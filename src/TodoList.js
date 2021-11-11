@@ -19,8 +19,8 @@ const TodoList = (props) => {
                 todo={todo.todo}
                 completed={todo.completed}
                 id={todo.id}
-                editTodo={editTodo}
-                deleteTodo={deleteTodo}
+                // editTodo={editTodo}
+                // deleteTodo={deleteTodo}
                 index={i}
               />
               {i < todoes.length - 1 && <Divider />}

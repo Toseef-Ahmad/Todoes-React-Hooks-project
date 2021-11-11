@@ -1,13 +1,16 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import useInput from './hooks/useInput';
 import useToggle from './hooks/useToggle';
 import TextField from '@mui/material/TextField';
 import IconButton from '@mui/material/IconButton';
 import CloseIcon from '@mui/icons-material/Close';
 import { blue } from '@mui/material/colors';
+import { TodoContext } from './contexts/todoesContext';
 
-const EditForm = ({ editTodo, id, toggleEdit, todo }) => {
+const EditForm = ({ id, toggleEdit, todo }) => {
   const [value, handleChange, reset] = useInput(todo);
+  const { editTodo } = useContext(TodoContext);
+
   const edit = (e) => {
     e.preventDefault();
     editTodo(id, value);

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import ListItem from '@mui/material/ListItem';
 import ListItemText from '@mui/material/ListItemText';
 import Checkbox from '@mui/material/Checkbox';
@@ -8,17 +8,18 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import EditIcon from '@mui/icons-material/Edit';
 import EditForm from './EditForm';
 import { SortableContainer, SortableElement } from 'react-sortable-hoc';
+import { TodoContext } from './contexts/todoesContext';
 
-const Todo = ({ todo, completed, editTodo, id, deleteTodo }) => {
+const Todo = ({ todo, completed, editTodo, id }) => {
   const [check, toggleCheck] = useToggle(completed);
   const [edit, toggleEdit] = useToggle(false);
-
+  const { deleteTodo } = useContext(TodoContext);
   return (
     <>
       <ListItem>
         {edit ? (
           <EditForm
-            editTodo={editTodo}
+            // editTodo={editTodo}
             id={id}
             toggleEdit={toggleEdit}
             todo={todo}
