@@ -9,11 +9,11 @@ import { TodoContext } from './contexts/todoesContext';
 
 const EditForm = ({ id, toggleEdit, todo }) => {
   const [value, handleChange, reset] = useInput(todo);
-  const { editTodo } = useContext(TodoContext);
+  const { dispatch } = useContext(TodoContext);
 
   const edit = (e) => {
     e.preventDefault();
-    editTodo(id, value);
+    dispatch({ type: 'EDIT', id: id, newTodo: value });
     toggleEdit();
   };
   return (

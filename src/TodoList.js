@@ -7,12 +7,12 @@ import { SortableContainer, SortableElement } from 'react-sortable-hoc';
 import { TodoContext } from './contexts/todoesContext';
 
 const TodoList = (props) => {
-  const { todoes, deleteTodo, editTodo } = useContext(TodoContext);
+  const { state } = useContext(TodoContext);
   return (
     <>
       <Paper>
         <List>
-          {todoes.map((todo, i) => (
+          {state.map((todo, i) => (
             <>
               <Todo
                 key={todo.id}
@@ -23,7 +23,7 @@ const TodoList = (props) => {
                 // deleteTodo={deleteTodo}
                 index={i}
               />
-              {i < todoes.length - 1 && <Divider />}
+              {i < state.length - 1 && <Divider />}
             </>
           ))}
         </List>

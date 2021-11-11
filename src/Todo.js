@@ -13,7 +13,7 @@ import { TodoContext } from './contexts/todoesContext';
 const Todo = ({ todo, completed, editTodo, id }) => {
   const [check, toggleCheck] = useToggle(completed);
   const [edit, toggleEdit] = useToggle(false);
-  const { deleteTodo } = useContext(TodoContext);
+  const { dispatch } = useContext(TodoContext);
   return (
     <>
       <ListItem>
@@ -32,7 +32,10 @@ const Todo = ({ todo, completed, editTodo, id }) => {
             >
               {todo}
             </ListItemText>
-            <IconButton aria-label="Delete" onClick={() => deleteTodo(id)}>
+            <IconButton
+              aria-label="Delete"
+              onClick={() => dispatch({ type: 'DELETE', id: id })}
+            >
               <DeleteIcon />
             </IconButton>
             <IconButton aria-label="Edit" onClick={toggleEdit}>

@@ -10,7 +10,7 @@ import useTodoState from './hooks/useTodoState';
 import { TodoContext } from './contexts/todoesContext';
 
 const TodoApp = (props) => {
-  const { onSortEnd } = useContext(TodoContext);
+  const { dispatch } = useContext(TodoContext);
   return (
     <Paper style={{ height: '100vh', backgroundColor: '#fafafa' }}>
       <AppBar position="static">
@@ -22,7 +22,13 @@ const TodoApp = (props) => {
       <Grid container style={{ justifyContent: 'center', margin: '50px 0' }}>
         <Grid item xs={11} md={6} lg={4}>
           <TodoForm />
-          <TodoList onSortEnd={onSortEnd} distance={10} axis="y" />
+          <TodoList
+            onSortEnd={({ oldIndex, newIndex }) =>
+              dispatch({ type: 'SORT', oldIndex: oldIndex, newIndex: newIndex })
+            }
+            distance={10}
+            axis="y"
+          />
         </Grid>
       </Grid>
     </Paper>

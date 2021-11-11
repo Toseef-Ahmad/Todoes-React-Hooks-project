@@ -7,11 +7,11 @@ import { TodoContext } from './contexts/todoesContext';
 const TodoForm = (props) => {
   const [todo, updateTodo, resetTodo] = useInput();
   // const { addToTodoes } = props;
-  const { addToTodoes } = useContext(TodoContext);
+  const { dispatch } = useContext(TodoContext);
 
   const addNewTodo = (e) => {
     e.preventDefault();
-    addToTodoes(todo);
+    dispatch({ type: 'ADD', newTodo: todo });
     resetTodo();
   };
   return (
